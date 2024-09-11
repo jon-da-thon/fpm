@@ -10,14 +10,14 @@ ARG BASE_ENV=everything
 ARG TARGET=test
 
 # Container to throw an error if called with a bare `docker build .`
-FROM ubuntu:20.04 as error
+FROM ubuntu:22.04 as error
 RUN <<EOF
   printf '\n\n\n%s\n\n\n' "Hey! Use buildkit. See the Makefile or docs"
   false
 EOF
 
 # Base container is used for various release and test things
-FROM ubuntu:20.04 as minimal-base
+FROM ubuntu:22.04 as minimal-base
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=Etc/UTC
 # Runtime deps. Build deps go in the build or test containers
